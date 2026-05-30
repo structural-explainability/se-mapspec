@@ -1,0 +1,122 @@
+# ============================================================
+# SE Mapspec: Alignment Schema
+# Defines the required structure for [[alignment]] records.
+# ============================================================
+
+[meta]
+schema = "se-mapspec-alignment-schema-1"
+version = "0.1.0"
+status = "draft"
+title = "SE Mapspec Alignment Schema"
+purpose = "Defines required fields, allowed values, and validation rules for Structural Explainability alignment records."
+
+[alignment]
+table = "alignment"
+toml_form = "array-of-tables"
+required = true
+description = "A typed source-to-target mapping assertion between independently defined systems."
+
+[alignment.required_fields]
+fields = [
+  "source_id",
+  "target_id",
+  "relation",
+  "confidence",
+  "method",
+  "human_validated",
+]
+
+[alignment.optional_fields]
+fields = [
+  "source_text",
+  "note",
+  "evidence",
+]
+
+[field.source_id]
+type = "string"
+required = true
+constraints = ["nonempty"]
+description = "Identifier for the source-side unit being mapped."
+
+[field.target_id]
+type = "string"
+required = true
+constraints = ["nonempty"]
+description = "Identifier for the target-side unit being mapped."
+
+[field.relation]
+type = "string"
+required = true
+allowed = [
+  "equivalent",
+  "narrower",
+  "broader",
+  "overlaps",
+  "none",
+]
+description = "Declared structural relation between the source unit and target unit."
+
+[field.confidence]
+type = "float"
+required = true
+minimum = 0.0
+maximum = 1.0
+description = "Confidence assigned to the alignment assertion."
+
+[field.method]
+type = "string"
+required = true
+allowed = [
+  "manual",
+  "expert_review",
+  "llm_assisted",
+  "rule_based",
+  "imported",
+]
+description = "Method used to produce the alignment assertion."
+
+[field.human_validated]
+type = "boolean"
+required = true
+description = "Whether the alignment assertion has been reviewed and accepted by a human maintainer."
+
+[field.source_text]
+type = "string"
+required = false
+description = "Optional excerpt or label from the source system. Must remain factual and traceable."
+
+[field.note]
+type = "string"
+required = false
+description = "Optional non-normative implementation note."
+
+[field.evidence]
+type = "list[string]"
+required = false
+description = "Optional source references supporting the alignment assertion."
+
+[validation]
+require_known_fields_only = true
+require_required_fields = true
+require_allowed_relation = true
+require_allowed_method = true
+require_confidence_range = true
+require_boolean_human_validated = true
+
+[validation.identity]
+source_id_must_not_equal_target_id = true
+
+[validation.traceability]
+evidence_required_when_human_validated = false
+source_text_allowed = true
+
+[notes]
+mapping_contract = "Alignment records are structural mapping assertions. They do not assert truth, causality, policy quality, or educational effectiveness."
+relation_meanings = [
+  "equivalent: source and target represent the same structural unit at the declared granularity",
+  "narrower: source is more specific than target",
+  "broader: source is more general than target",
+  "overlaps: source and target partially intersect but neither contains the other cleanly",
+  "none: source has no meaningful target alignment",
+]

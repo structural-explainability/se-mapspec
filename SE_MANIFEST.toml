@@ -1,0 +1,72 @@
+# ============================================================
+# SE_MANIFEST.toml (Repository Declaration)
+# ============================================================
+
+schema = "se-manifest-2"
+
+# === Repository Identity ===
+
+[meta]
+# WHY: Minimal metadata; versioned separately via Git tags
+name = { repo = "se-mapspec", kind = "semantic", version = "main" }
+org = "structural-explainability"
+status = "active"
+version = "0.1.0"
+
+[repo]
+# WHY: Repo identity is defined structurally
+class = "mapping"
+summary = "Mapping vocabulary and structural correspondence rules for the SE ecosystem."
+
+# === Dependency Declarations ===
+
+[depends]
+required = [
+    { repo = "se-constitution", kind = "semantic", version = "main" },
+    { repo = { repo = "se-kernel", kind = "semantic", version = "main" }, kind = "semantic", version = "main" },
+]
+optional = []
+
+# === Provided Artifacts ===
+
+[provides]
+# WHY: Explicit artifact ownership (core to this repository)
+artifacts = ["mapping-primitives", "mapping-structure", "mapping-constraints"]
+
+# === Scope ===
+
+[scope]
+# WHY: Keep this tight and structural
+includes = [
+    "definition of mapping vocabulary",
+    "definition of structural correspondence",
+    "constraints on mapping expressions",
+]
+
+excludes = [
+    "runtime transformations",
+    "adapters or connectors",
+    "domain semantics",
+]
+
+[validation]
+entrypoint = "none"
+
+# === Behavior / governance ===
+
+[naming]
+# WHY: Declares expected repo-family naming convention
+pattern = "se-*"
+
+[governance]
+# WHY: Declares governing authority for this repository
+authority = "structural-explainability"
+
+# === External references ===
+
+[citation]
+cff = "CITATION.cff"
+
+[traceability]
+# WHY: Reserved for future identifier resolution
+identifier_map = "none"
