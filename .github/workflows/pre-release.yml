@@ -69,10 +69,6 @@ jobs:
             || echo "No hook runner installed"
         # WHY: Version output makes CI logs easier to debug when tools change.
 
-      - name: A6) Configure GitHub Pages
-        # WHY: Sets Pages metadata for deployments.
-        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
-
       # ============================================================
       # B) BUILD
       # ============================================================
@@ -174,7 +170,7 @@ jobs:
           assert (
               "se_mapspec/alignment-schema.toml" in names
           ), "Wheel is missing se_mapspec/alignment-schema.toml"
-                    PY
+          PY
 
       - name: C3) Sync dependencies after build
         run: uv sync --frozen
