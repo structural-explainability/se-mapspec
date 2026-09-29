@@ -14,17 +14,10 @@
 
 ## Context
 
-### se-constitution
-- defines rules
-
-### se-kernel
-- defines primitives those rules depend on
-
-### se-admin
-- enforces rules across repositories
-
-### se-mapspec
-- defines how structures correspond across systems
+- se-constitution defines rules
+- se-kernel defines primitives those rules depend on
+- se-admin enforces rules across repositories
+- se-mapspec defines how structures correspond across systems
 
 ## Owns
 
@@ -55,8 +48,8 @@
 
 ## Elsewhere
 
-- se-mapping-*
-- se-adapter-*
+- se-mapping-\*
+- se-adapter-\*
 
 Other projects will provide:
 
@@ -66,16 +59,9 @@ Other projects will provide:
 - data processing logic
 - domain semantics
 
+## Development
 
-
-## Command Reference
-
-<details>
-<summary>Show command reference</summary>
-
-### In a machine terminal
-
-Open a machine terminal where you want the project:
+### Clone and Open in VS Code
 
 ```shell
 git clone https://github.com/structural-explainability/se-mapspec
@@ -84,20 +70,23 @@ cd se-mapspec
 code .
 ```
 
-### In a VS Code terminal
+### Set Up the Project
 
 ```shell
+uvx pup-clean --delete
 uv self update
-uv python pin 3.15
-uv sync --extra dev --extra docs --upgrade
+uv python install
+uv lock --upgrade
+uv sync
+uv audit
 
-uvx pre-commit install
-
+# set up and run git hooks
+uv run prek install --force
+uv run prek update
 git add -A
-uvx pre-commit run --all-files
+uv run prek run --all-files
 # repeat if changes were made
-git add -A
-uvx pre-commit run --all-files
+uv run prek run --all-files
 
 # run the module
 uv run python -m se_mapspec
@@ -115,8 +104,6 @@ git add -A
 git commit -m "update"
 git push -u origin main
 ```
-
-</details>
 
 ## Citation
 

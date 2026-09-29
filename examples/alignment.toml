@@ -1,0 +1,8 @@
+# Sample structural alignment declaration; not a verified claim.
+[[alignment]]
+source_id = "source.example"
+target_id = "target.example"
+relation = "overlaps"
+confidence = 0.5
+method = "manual"
+human_validated = false

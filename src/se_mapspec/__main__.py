@@ -1,11 +1,6 @@
-"""Module entry point."""
+"""Run the se-mapspec CLI as a Python module."""
 
-
-def main() -> int:
-    """Main entry point for the se-mapspec module."""
-    print("se-mapspec: mapping specification (no runtime commands yet)")
-    return 0
-
+from se_mapspec.cli import main
 
 if __name__ == "__main__":
     raise SystemExit(main())

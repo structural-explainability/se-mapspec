@@ -2,18 +2,21 @@
 # SE_MANIFEST.toml (Repository Declaration)
 # ============================================================
 
-schema = "se-manifest-2"
+schema = "se-mapspec-schema"
+schema_version = "0.5.0"
+schema_url = "https://raw.githubusercontent.com/structural-explainability/se-mapspec-schema/main/manifest-schema.toml"
+
+# === Framework Context ===
+
+[meta]
+framework = "Structural Explainability"
+framework_url = "https://github.com/structural-explainability"
+purpose = "Declares this repository's role in the Structural Explainability ecosystem."
 
 # === Repository Identity ===
 
-[meta]
-# WHY: Minimal metadata; versioned separately via Git tags
-name = { repo = "se-mapspec", kind = "semantic", version = "main" }
-org = "structural-explainability"
-status = "active"
-version = "0.1.0"
-
-[repo]
+[repository]
+organization = "structural-explainability"
 # WHY: Repo identity is defined structurally
 class = "mapping"
 summary = "Mapping vocabulary and structural correspondence rules for the SE ecosystem."
@@ -22,8 +25,8 @@ summary = "Mapping vocabulary and structural correspondence rules for the SE eco
 
 [depends]
 required = [
-    { repo = "se-constitution", kind = "semantic", version = "main" },
-    { repo = { repo = "se-kernel", kind = "semantic", version = "main" }, kind = "semantic", version = "main" },
+    { repository = "se-constitution", kind = "semantic", version = "main" },
+    { repository =  "se-kernel", kind = "semantic", version = "main" },
 ]
 optional = []
 
