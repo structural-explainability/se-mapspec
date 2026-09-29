@@ -2,7 +2,9 @@
 # .github/workflows/release-pypi.yml
 # (Release PyPI + docs via Zensical)
 # ============================================================
-# WHY-FILE: Publish a tagged release to PyPI and deploy docs to GitHub Pages.
+# Updated: 2026-09-29
+#
+# WHY: Publish a tagged release to PyPI and deploy docs to GitHub Pages.
 # REQ: Trigger ONLY on version tags like v1.2.3.
 # REQ: PyPI project must be configured for Trusted Publishing (OIDC).
 # REQ: uv build must run before anything that modifies the working tree (including uv sync).

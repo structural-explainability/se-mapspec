@@ -1,16 +1,10 @@
 # ============================================================
-# .github/workflows/pre-release.yml (SE Manifest Schema)
+# .github/workflows/pre-release.yml
 # ============================================================
-# VARIANT: se-mapspec-schema
-# Updated: 2026-04-30
+# Updated: 2026-09-29
 
-# WHY-FILE: Pre-release checks and build.
+# WHY: : Pre-release checks and build.
 # REQ: Trigger on version tags like v1.2.3.
-#
-# OWNS:
-#   schema validation
-#   SE_MANIFEST.toml validation
-#   artifact integrity checks
 
 name: Pre-Release Checks and Build
 
@@ -18,10 +12,8 @@ on:
   workflow_call: # WHY: Allow calling from PyPI repos in this org.
   workflow_dispatch: # WHY: Allow manual trigger for pre-release checks if needed.
 
-permissions: # WHY: Use least privileges required.
-  contents: write # WHY: Create GitHub Release.
-  pages: write # WHY: Required to deploy to GitHub Pages.
-  id-token: write # WHY: PyPI Trusted Publishing (OIDC) + deploy-pages OIDC.
+permissions:
+  contents: read
 
 env:
   PYTHONUNBUFFERED: "1" # WHY: Real-time logging.
